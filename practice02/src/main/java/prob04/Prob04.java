@@ -14,12 +14,12 @@ public class Prob04 {
    
    public static char[] reverse(String str) {
       /* 코드를 완성합니다 */
-      StringBuffer sb = new StringBuffer(str);
-      return sb.reverse().toString().toCharArray();
+	   char[] ch = new StringBuffer(str).reverse().toString().toCharArray();   
+	   return ch;
    }
 
    public static void printCharArray(char[] array){
       /* 코드를 완성합니다 */
-      System.out.println(new String(array, 0, array.length).replaceAll(" ", ","));
+      System.out.println(array);
    }
 }

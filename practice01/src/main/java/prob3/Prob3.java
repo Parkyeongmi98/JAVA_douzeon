@@ -11,22 +11,19 @@ public class Prob3 {
 		/* 코드 작성 */
 
 		System.out.println("숫자를 입력하세요: ");
-		int i = scanner.nextInt();
-		
-		if(i%2 == 1) {
-			int temp = 0;
-			for(int a=1; a<=i; a+=2) {
-			temp += a;
+		int input = scanner.nextInt();
+		int sum = 0;
+		if (input % 2 == 1) {
+			for (int i = 1; i <= input; i+=2) {
+				sum += i;
 			}
-			i=temp;
-		} else {
-			int temp = 0;
-			for(int a=2; a<=i; a+=2) {
-			temp += a;
+			System.out.println("결과 값 : " + sum);
+		} else if ((input % 2 == 0)) {
+			for (int i = 0; i <= input; i+=2) {
+				sum += i;
 			}
-			i=temp;
+			System.out.println("결과 값 : " + sum);
 		}
-		System.out.println("결과 값: " + i);
 		
 		scanner.close();
 	}

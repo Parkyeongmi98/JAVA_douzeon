@@ -1,15 +1,6 @@
 package prob03;
 
 public class Prob03 {
-	public static void printCharArray(char c[]) {
-		System.out.println(new String(c, 0, c.length));
-	}
-
-	public static char[] replaceSpace(char c[]) {
-		c = new String(c, 0, c.length).replaceAll(" ", ",").toCharArray();
-		return c;
-	}
-
 	public static void main(String args[]) {
 		char c[] = { 'T', 'h', 'i', 's', ' ', 'i', 's', ' ', 'a', ' ', 'p', 'e', 'n', 'c', 'i', 'l', '.' };
 
@@ -20,7 +11,18 @@ public class Prob03 {
 		c=replaceSpace(c);
 
 		// 수정된 배열 원소 출력
-		printCharArray(c);
+		printCharArray(c);		
+
+	}
+	
+	public static char[] replaceSpace(char a[]) {
+		String str = new String(a);
+		char[] c = str.replace(" ", ",").toCharArray();
+		return c;
+	}
+	
+	public static void printCharArray(char a[]) {
+		System.out.println(a);
 	}
 
 }

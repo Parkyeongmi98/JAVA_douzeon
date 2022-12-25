@@ -12,15 +12,19 @@ public class GoodsApp {
 		Goods[] goods = new Goods[COUNT_GOODS];
 
 		// 상품 입력
+		System.out.println("상품을 입력하세요.");
 		for(int i = 0; i < COUNT_GOODS; i++) {
-			String info = scanner.nextLine();
-			String[] infos = info.split(" ");
-			System.out.println(infos[0] + ":" + infos[1] + ":" + infos[2]);
-
-			info.split(" ");
+			String input = scanner.nextLine();
+			String[] inputs = input.split(" ");
+			goods[i] = new Goods(inputs[0], Integer.parseInt(inputs[1]), Integer.parseInt(inputs[2]));
 		}
+		System.out.println();
 
-		// 상품 출
+		// 상품 출력
+		for(int i = 0; i < COUNT_GOODS; i++) {
+			goods[i].show();
+		}
+		
 		
 		// 자원정리
 		scanner.close();
