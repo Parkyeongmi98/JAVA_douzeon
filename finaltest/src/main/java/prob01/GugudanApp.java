@@ -1,5 +1,8 @@
 package prob01;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashSet;
 import java.util.Scanner;
 
 public class GugudanApp {
@@ -49,6 +52,12 @@ public class GugudanApp {
 		final int COUNT_ANSWER_NUMBER = 9;
 		int[] boardNumbers = new int[COUNT_ANSWER_NUMBER];
 		
-		return boardNumbers;
+		HashSet<Integer> hashSet = new HashSet<>();
+		
+		for (int temp : boardNumbers) {		
+			hashSet.add(temp);
+		} 
+		int[] c = new int[hashSet.size()];
+		return c;
 	}
 }
