@@ -23,7 +23,9 @@ public class QueueTest {
 		System.out.println(q.poll()); // 마이콜 꺼내서 출력(선입선출)
 		System.out.println(q.peek()); // 다음꺼 미리보기 출력
 		System.out.println(q.poll()); // 둘리 꺼내서 출력
-		System.out.println(q.poll());
+		System.out.println(q.poll()); // 마지막꺼까지 꺼내서 출력
+		
+		// 비어 있는 경우 null을 반환한다.
 		System.out.println(q.poll());
 		
 	}	
