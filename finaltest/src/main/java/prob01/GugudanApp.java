@@ -3,6 +3,7 @@ package prob01;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Scanner;
 
 public class GugudanApp {
@@ -51,13 +52,25 @@ public class GugudanApp {
 		/* 코드 작성(수정 가능) */
 		final int COUNT_ANSWER_NUMBER = 9;
 		int[] boardNumbers = new int[COUNT_ANSWER_NUMBER];
+
+		HashSet<Integer> set = new HashSet<>();
 		
-		HashSet<Integer> hashSet = new HashSet<>();
+		while (set.size() < 9) {
+			int randomize = randomize(1, 9)*randomize(1, 9);
+			if (randomize != resultNumber) {
+					set.add(randomize);
+			} 
+		}
 		
-		for (int temp : boardNumbers) {		
-			hashSet.add(temp);
-		} 
-		int[] c = new int[hashSet.size()];
-		return c;
+		Iterator<Integer> it = set.iterator();
+		int i = 0;
+		while (it.hasNext()) {
+			
+			boardNumbers[i] = (int) it.next();
+			i++;
+
+		}
+		
+		return boardNumbers;
 	}
 }
