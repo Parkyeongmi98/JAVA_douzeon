@@ -30,9 +30,8 @@ public class EchoClient {
 			BufferedReader br = new BufferedReader(
 					new InputStreamReader(socket.getInputStream(), "utf-8"));
 			
-			
+			scanner = new Scanner(System.in);
 			while(true) {
-				scanner = new Scanner(System.in);
 				System.out.print(">> ");
 				String line = scanner.nextLine();
 				

@@ -21,7 +21,7 @@ public class TCPServer {
 			serverSocket.bind(new InetSocketAddress("0.0.0.0", 5000), 10);// (IPAddress 주소, Port번호), connection 할수있는 개수
 			
 			// 3. accept
-			Socket socket = serverSocket.accept(); // blockint(멈춤)
+			Socket socket = serverSocket.accept(); // blocking(멈춤)
 			try {
 				InetSocketAddress inetRemoteSocketAddress = 
 						(InetSocketAddress)socket.getRemoteSocketAddress();

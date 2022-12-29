@@ -20,7 +20,7 @@ public class EchoServer {
 		try {
 			serverSocket = new ServerSocket();
 			
-			serverSocket.bind(new InetSocketAddress("0.0.0.0", PORT));
+			serverSocket.bind(new InetSocketAddress("0.0.0.0", PORT), 10);
 			log("starts... [port: " + PORT + "]");
 			
 			Socket socket = serverSocket.accept();
