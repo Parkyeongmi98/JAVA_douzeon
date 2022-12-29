@@ -10,6 +10,7 @@ import java.io.PrintWriter;
 import java.net.InetSocketAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.net.SocketException;
 
 public class EchoServer {
 	public static final int PORT = 8000;
@@ -32,10 +33,10 @@ public class EchoServer {
 			
 			try {
 				PrintWriter pw = new PrintWriter(
-						new OutputStreamWriter(socket.getOutputStream()), true);
+						new OutputStreamWriter(socket.getOutputStream(), "utf-8"), true);
 				
 				BufferedReader br = new BufferedReader(
-						new InputStreamReader(socket.getInputStream()));
+						new InputStreamReader(socket.getInputStream(), "utf-8"));
 				
 				while (true) {
 					String data = br.readLine(); // 갱을 붙여라
@@ -47,6 +48,9 @@ public class EchoServer {
 					log("received: " + data);
 					pw.println(data);
 				}
+				
+			} catch(SocketException ex) {
+				System.out.println("[server] suddenly closed by client");
 			} catch(IOException ex) {
 				log("error: " + ex);
 			} finally {
