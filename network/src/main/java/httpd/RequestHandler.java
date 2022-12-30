@@ -52,17 +52,18 @@ public class RequestHandler extends Thread {
 			}
 			
 			// 요청 처리
-//			consoleLog(request);
+			consoleLog(request);
+			
 			String[] tokens = request.split(" ");
-			// tokens[0] : 메소드   tokens[1] : url   tokens[2] : protocol
+			// tokens[0] : 메소드  tokens[1] : url  tokens[2] : protocol
 			if("GET".equals(tokens[0])) {
-				consoleLog(request);
 				reponseStaticResource(outputStream, tokens[1], tokens[2]);
 			} else {
+				// 과제
 				// methods: POST, PUT, DELETE, HEAD, CONNECT
 				// SimpleHttpServer 에서는 무시(400 Bad Resquest)
-				// reponse400Error(outputStream, tokens[2]);
-				
+				reponse400Error(outputStream, tokens[2]);
+				consoleLog(request);
 			}
 		} catch(Exception ex) {
 			consoleLog("error:" + ex);
@@ -83,22 +84,65 @@ public class RequestHandler extends Thread {
 			OutputStream outputStream, 
 			String url, 
 			String protocol) throws IOException {
+		
 		// default(welcome) file set
 		if("/".equals(url)) {
 			url = "/index.html";
 		}
 		
 		File file = new File(DOCUMENT_ROOT + url);
+		if(!file.exists()) {
+			reponse404Error(outputStream, protocol);
+			return;
+		}
 		
 		// nio
 		byte[] body = Files.readAllBytes(file.toPath());
 		String contentType = Files.probeContentType(file.toPath());
 		
 		// 응답
-		outputStream.write("HTTP/1.1 200 OK\r\n".getBytes("UTF-8"));
+		outputStream.write((protocol + " 200 OK\r\n").getBytes("UTF-8"));
 		outputStream.write(("Content-Type:" + contentType + "; charset=utf-8\r\n").getBytes("UTF-8"));
 		outputStream.write("\r\n".getBytes());
 		outputStream.write(body);
+	}
+
+	private void reponse404Error(OutputStream outputStream, String protocol) throws IOException {
+		// HTTP/1.1 404 Not Found
+		// Content-Type:.....
+		// \r\n
+		// .....
+		
+		String url = "/error/404.html";
+		
+		File file = new File(DOCUMENT_ROOT + url);
+		byte[] body = Files.readAllBytes(file.toPath());
+		String contentType = Files.probeContentType(file.toPath());
+		
+		outputStream.write((protocol + " 404 Not Found").getBytes("UTF-8"));
+		outputStream.write(("Content-Type:" + contentType + "; charset=utf-8\r\n").getBytes("UTF-8"));
+		outputStream.write("\r\n".getBytes());
+		outputStream.write(body);
+		
+	}
+	
+	private void reponse400Error(OutputStream outputStream, String string) throws IOException {
+		// HTTP/1.1 400 Bad Reques
+		// Content-Type:.....
+		// \r\n
+		// .....
+		
+		String url = "/error/400.html";
+		
+		File file = new File(DOCUMENT_ROOT + url);
+		byte[] body = Files.readAllBytes(file.toPath());
+		String contentType = Files.probeContentType(file.toPath());
+		
+		outputStream.write((string + " 404 Not Found").getBytes("UTF-8"));
+		outputStream.write(("Content-Type:" + contentType + "; charset=utf-8\r\n").getBytes("UTF-8"));
+		outputStream.write("\r\n".getBytes());
+		outputStream.write(body);
+		
 	}
 
 	public void consoleLog(String message) {
