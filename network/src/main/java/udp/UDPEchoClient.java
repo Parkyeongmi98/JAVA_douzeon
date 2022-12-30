@@ -7,7 +7,7 @@ import java.net.InetSocketAddress;
 import java.net.SocketException;
 import java.util.Scanner;
 
-public class UDPEchoClient {
+public class UDPEchoClient {  // UDP는 스트리밍 서비스등 데이터가 빠져도 상관없을 경우 사용
 	private static final String SERVER_IP = "127.0.0.1";
 	
 	public static void main(String[] args) {
