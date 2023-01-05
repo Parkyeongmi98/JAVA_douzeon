@@ -84,18 +84,19 @@ public class ChatServerThread extends Thread{
 	private void doQuit(Writer writer) {
 		removeWriter(writer);
 		String str = nickname + "님이 퇴장하였습니다.";
-		System.out.println(nickname + ": 퇴장");
+		System.out.println(nickname + "퇴장함");
 		broadcast(str);
 	}
 
 	private void removeWriter(Writer writer) {
-		
-		
+		synchronized (listWriters) {
+			listWriters.remove(writer);
+		}
 	}
 
 	private void doMessage(String message) {
-		String data = message;
-		System.out.println(nickname + ":" + message);
+		String data = nickname + ":" + message;
+		System.out.println(nickname + ": " + message);
 		broadcast(data);
 		
 	}
@@ -106,7 +107,7 @@ public class ChatServerThread extends Thread{
 		this.nickname = nickName;
 		
 		String data = nickName + "님이 참여하였습니다.";
-		System.out.println(nickname + ": 참여");
+		System.out.println(nickname + "참여함");
 		
 		broadcast(data);
 		// writer pool에 저장
@@ -123,8 +124,8 @@ public class ChatServerThread extends Thread{
 		synchronized(listWriters) {
 		for(Writer writer : listWriters) {
 			PrintWriter printWriter = (PrintWriter)writer; //다운캐스팅
-			printWriter.println(nickname + ": " + data);
-			// printWriter.println(data);
+			printWriter.println(data);
+			//printWriter.println(data);
 			
 		    }
 		}

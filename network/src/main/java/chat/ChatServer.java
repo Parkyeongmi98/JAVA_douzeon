@@ -37,7 +37,7 @@ public class ChatServer {
 				Socket socket = serverSocket.accept();
 				// 클라이언트와 연결된 후 채팅 데이터 통신은 CharServerThread가 한다
 				// 요청이 수락하고 스레드를 생성할 때 list객체를 스레드 생성자를 통해 전달
-				new ChatServerThread(socket, listWriters).start();
+				new ChatServerThread(socket, listWriters).start(); // ChatServerThread 생성하고 실행
 			}
 		} catch (IOException e) {
 			log("서버 오류"); // 서버에서 나는 오류

@@ -56,11 +56,11 @@ public class ChatClient {
 			}
 			
 			//7. 키보드 입력 처리
+			System.out.print(">>");
 			while(true) {
-				System.out.print("대화를 입력하세요 >>");
 			    String input = scanner.nextLine();
-			    System.out.println(nickname + ":" + input);
-			    System.out.println(input);
+			    System.out.print(">>");
+
 			    if("quit".equals(input) == true) {	 
 			        // 8. quit 프로토콜 처리
 			    	pw.println("quit");
