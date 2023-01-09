@@ -12,7 +12,7 @@ public class ChatClientThread extends Thread {
 	private BufferedReader br;
 	// Socket Read
 	private Socket socket;
-	private PrintWriter pw =null;
+	private PrintWriter pw = null;
 	
 	public ChatClientThread(Socket socket) {
 		this.socket = socket;

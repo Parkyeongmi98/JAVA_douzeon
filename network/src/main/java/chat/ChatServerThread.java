@@ -120,7 +120,10 @@ public class ChatServerThread extends Thread{
 	
 	// 서버에 연결된 모든 클라이언트에게 메시지 보내는 메소드
 	private void broadcast(String data) {
-		//동기화 처리
+		// 동기화 처리 -> 멀티스레드 환경에선 스레드간 동기화라는 문제를 해결해야함
+		// 여러 스레드가 하나의 공유객체에 접근할때 동기화 보장 synchronized
+		// 여러개의 스레드가 한개의 자원을 사용하고자 할 때, 현재 데이터를 사용하고 있는 
+		// 해당 스레드를 제외하고 나머지 스레드들은 데이터에 접근 할 수 없도록 막는 개념
 		synchronized(listWriters) {
 		for(Writer writer : listWriters) {
 			PrintWriter printWriter = (PrintWriter)writer; //다운캐스팅
@@ -132,7 +135,6 @@ public class ChatServerThread extends Thread{
 	}
 
 	private void addWriter(Writer writer) {
-		// 여러 스레드가 하나의 공유객체에 접근할때 동기화 보장 synchronized
 		synchronized(listWriters) {
 			// Writer pool(list)에 Writer 추가
 		    listWriters.add(writer);
