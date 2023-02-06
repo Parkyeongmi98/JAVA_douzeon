@@ -19,7 +19,6 @@ public class ChatServer {
 
 	
 	public static void main(String[] args) {
-		
 		ServerSocket serverSocket = null;
 		// PrintWriter를 담을 수 있는 List 생성
 		List<Writer> listWriters = new ArrayList<>();
